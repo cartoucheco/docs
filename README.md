@@ -41,9 +41,9 @@ def signAssociateRequest(subnode, owner, nonce):
 Example usage:
 ```
 sig = signAssociateRequest(
-subnode,
-“0x314159265dd8dbb310642f98f50c066173c1259b”,
-0)
+    subnode,
+    "0x314159265dd8dbb310642f98f50c066173c1259b",
+    0)
 ```
 
 subnode is generated using the namehash function. You can do this by calling the /v2/namehash endpoint, or by using functionality available in your language; for instance, in Python 3 with the web3.py NPM package installed:
@@ -74,7 +74,7 @@ Requests to all endpoints are sent as JSON-encoded messages. All requests are se
 A request to a hypothetical ‘echo’ endpoint might have the following body:
 
 ```
-{“message”: “Hello, world!”}
+{"message": "Hello, world!"}
 ```
 
 ## Response Format
@@ -89,11 +89,11 @@ Responses are JSON objects, returned with `Content-Type: application/json`. All 
 
 A successful call to the ‘echo’ endpoint might return a response like the following:
 ```
-{“result”: “Hello, world!”}
+{"result": "Hello, world!"}
 ```
 An unsuccessful call might return a response like the following:
 ```
-{“error”: {“code”: 1, “message”: “No message provided”}}
+{"error": {"code": 1, "message": "No message provided"}}
 ```
 
 ## Endpoints
@@ -114,7 +114,7 @@ $ curl -X POST -H "Content-Type: application/json" --data '{"name": "nic.luxe"}'
 
 An example response is as follows:
 ```
-{“result”: “0x8cf6312bc272d2fac9375e40cdd240b42b457bc7ba481725793e6b517f75772c”}
+{"result": "0x8cf6312bc272d2fac9375e40cdd240b42b457bc7ba481725793e6b517f75772c"}
 ```
 
 ### /v2/nonce
@@ -137,7 +137,7 @@ $ curl -X POST -H "Content-Type: application/json" --data '{"name": "nic.luxe"}'
 An example response is as follows:
 
 ```
-{“result”: 0}
+{"result": 0}
 ```
 
 ### /v2/associate
@@ -228,11 +228,11 @@ curl -X POST -H "Content-Type: application/json" --data '
 Assuming the authorisation check passes - eg, the message is signed with the public key associated with example.com - a success result is returned:
 
 ```
-{“result”: “ok”}
+{"result": "ok"}
 ```
 
 If the authorisation check fails, an error message like the following is returned:
 
 ```
-{“error”: {“code”: 403, “message”: “Could not verify message signature using the key provided for example.com”}}
+{"error": {"code": 403, "message": "Could not verify message signature using the key provided for example.com"}}
 ```
