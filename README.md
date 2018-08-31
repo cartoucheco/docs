@@ -198,6 +198,7 @@ Now, we encode the data to be signed - the name hash, address, and nonce. Each i
 | node | 8cf6312bc272d2fac9375e40cdd240b42b457bc7ba481725793e6b517f75772c |
 | address | 000000000000000000000000314159265dd8dbb310642f98f50c066173c1259b |
 | nonce | 0000000000000000000000000000000000000000000000000000000000000000 |
+| --- | --- |
 
 These values are concatenated, and hashed using keccak256:
 
