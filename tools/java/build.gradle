@@ -1,0 +1,17 @@
+apply plugin: 'application'
+
+description 'Cartouche API demo tool for Java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation ('org.web3j:core:3.5.0')
+    implementation ('commons-cli:commons-cli:1.4')
+    implementation ('commons-io:commons-io:2.6')
+    implementation ('com.google.code.gson:gson:2.8.5')
+}
+
+mainClassName = 'co.cartouche.associate.Associate'
+applicationName = 'associate'
