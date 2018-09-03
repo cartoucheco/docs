@@ -236,3 +236,58 @@ If the authorisation check fails, an error message like the following is returne
 ```
 {"error": {"code": 403, "message": "Could not verify message signature using the key provided for example.com"}}
 ```
+
+### /v2/query
+The query endpoint returns information on the current status of an ENS address.
+
+#### Request Format
+Requests contain the following element:
+ - `name`: The name to query.
+
+#### Response Format
+If the request succeeded, a JSON object with the following entries is returned:
+ - `owner` - The Ethereum address that owns the name in ENS.
+ - `resolver` - The Ethereum address of the resolver contract responsible for this name.
+ - `addr` - The Ethereum address to which the name resolves
+
+#### Example Request
+
+```
+$ curl -X POST -H "Content-Type: application/json" --data '{"name": "nic.luxe"}' http://api-test.cartouche.co/v2/query
+```
+
+An example response is as follows:
+
+```
+{"result": {"owner": "0x466f6DE234aeca0e1Ae952588a6f908Ea3866a65", "resolver": "0x9eb3012d24e1E63E65655196D95F1018360Cab95", "addr": "0x466f6DE234aeca0e1Ae952588a6f908Ea3866a65"}}
+```
+
+### /v2/transactions
+The transactions endpoint returns a list of associate operations made against ENS.
+
+#### Request Format
+Unlike other endpoints, this endpoint is accessed using GET, with arguments provided as query string parameters. The following parameters are supported:
+ - `tld` (required) - The TLD to query (eg, 'luxe').
+ - `start` (optional) - The timestamp at which to begin the query. For pagination, supply the timestamp of the last returned entry for this field.
+ - `limit` (optional) - The number of results to return. Defaults to 100, maximum 1000.
+
+#### Response Format
+If the request succeeded, a list of JSON objects is returned. Each object has the following elements:
+ - `tld` - The TLD for which the transaction was sent.
+ - `timestamp` - The timestamp at which the transaction was sent.
+ - `entries` - A list of entry objects. Each entry object has the following elements:
+   - `name` - The name (without TLD) the associate operation affected.
+   - `registrarId` - The ICANN ID of the registrar for that name. 
+   - `owner` - The Ethereum address of the new owner for the name.
+
+#### Example Request
+
+```
+$ curl http://api-test.cartouche.co/v2/query?tld=luxe
+```
+
+An example response is as follows:
+
+```
+{"result": [{"tld": "luxe", "timestamp": "2018-09-03T00:00:00", "entries": [{"name": "nic", "registrarId": 9999, "owner": "0x466f6DE234aeca0e1Ae952588a6f908Ea3866a65"]}]}
+```
