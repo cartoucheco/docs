@@ -268,13 +268,16 @@ The transactions endpoint returns a list of associate operations made against EN
 #### Request Format
 Unlike other endpoints, this endpoint is accessed using GET, with arguments provided as query string parameters. The following parameters are supported:
  - `tld` (required) - The TLD to query (eg, 'luxe').
- - `start` (optional) - The timestamp at which to begin the query. For pagination, supply the timestamp of the last returned entry for this field.
+ - `start` (optional) - The nonce after which to begin the query. For pagination, supply the nonce of the last returned entry for this field.
  - `limit` (optional) - The number of results to return. Defaults to 100, maximum 1000.
 
 #### Response Format
 If the request succeeded, a list of JSON objects is returned. Each object has the following elements:
  - `tld` - The TLD for which the transaction was sent.
  - `timestamp` - The timestamp at which the transaction was sent.
+ - `mined_at` - If mined, the timestamp at which the transaction was mined.
+ - `block_number` - If mined, the block number at which the transaction was mined.
+ - `hash` - The transaction hash. May change before a transaction is mined due to gas price changes.
  - `entries` - A list of entry objects. Each entry object has the following elements:
    - `name` - The name (without TLD) the associate operation affected.
    - `registrarId` - The ICANN ID of the registrar for that name. 
@@ -283,11 +286,26 @@ If the request succeeded, a list of JSON objects is returned. Each object has th
 #### Example Request
 
 ```
-$ curl http://api-test.cartouche.co/v2/query?tld=luxe
+$ curl http://api-test.cartouche.co/v2/transactions?tld=luxe
 ```
 
 An example response is as follows:
 
 ```
 {"result": [{"tld": "luxe", "timestamp": "2018-09-03T00:00:00", "entries": [{"name": "nic", "registrarId": 9999, "owner": "0x466f6DE234aeca0e1Ae952588a6f908Ea3866a65"]}]}
+```
+
+### /v2/ping
+When sent a GET requests, returns 200 OK.
+
+#### Example Request
+
+```
+$ curl http://api-test.cartouche.co/v2/ping
+```
+
+An example response is as follows:
+
+```
+OK
 ```
