@@ -181,7 +181,7 @@ The following error codes are defined for failure conditions:
 #### Example Request
 We wish to make a request with the following parameters:
 
- - name: nic.luxe
+ - domain: nic.luxe
  - address: 0x314159265dd8dbb310642f98f50c066173c1259b
 
 First, a call is made to `/v2/nonce` (see the section on that RPC call for details), obtaining the current nonce for this domain. This is the first time we’ve updated the domain, so here it will be 0.
@@ -222,7 +222,7 @@ Finally, the name, address, nonce and signature are encoded in a JSON request an
 
 ```
 curl -X POST -H "Content-Type: application/json" --data '
-{"name": "nic.luxe", "address": "0x314159265dd8dbb310642f98f50c066173c1259b", "nonce": 0, "signature": "0x5fc7b774d1455a8a04c8d46f23ed7fe1de0b7e3bc9a1e02fa1058006829573d920f78d236b4793f2d184e7b6fe9efa19253731b645ca9f597d74d07944bb6ae71b"}' http://api-test.cartouche.co/v2/associate
+{"domain": "nic.luxe", "owner": "0x314159265dd8dbb310642f98f50c066173c1259b", "nonce": 0, "signature": "0x5fc7b774d1455a8a04c8d46f23ed7fe1de0b7e3bc9a1e02fa1058006829573d920f78d236b4793f2d184e7b6fe9efa19253731b645ca9f597d74d07944bb6ae71b"}' http://api-test.cartouche.co/v2/associate
 ```
 
 Assuming the authorisation check passes - eg, the message is signed with the public key associated with example.com - a success result is returned:
