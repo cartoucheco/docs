@@ -316,7 +316,7 @@ The is_registrar_authorised returns a boolean indicating if the supplied address
 
 #### Request Format
 Requests contain the following elements:
- - `id`: The IANA registrar ID.
+ - `kid`: The IANA registrar ID.
  - `address`: The address to check.
  
 #### Response Format
@@ -325,7 +325,7 @@ A boolean is returned; true if the supplied address can sign for the specified r
 #### Example Request
 
 ```
-$ curl -X POST -H "Content-Type: application/json" --data '{"id": 9999, "address": "0x2693d5Df1854Bd01524F0C0e7b559124E6AA72b5"}' https://api-test.cartouche.co/v2/is_registrar_authorised
+$ curl -X POST -H "Content-Type: application/json" --data '{"kid": 9999, "address": "0x2693d5Df1854Bd01524F0C0e7b559124E6AA72b5"}' https://api-test.cartouche.co/v2/is_registrar_authorised
 ```
 
 An example response is as follows:
