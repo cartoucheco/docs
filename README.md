@@ -296,7 +296,7 @@ An example response is as follows:
 ```
 
 ### /v2/ping
-When sent a GET requests, returns 200 OK.
+When sent a GET request, returns 200 OK.
 
 #### Example Request
 
@@ -308,4 +308,28 @@ An example response is as follows:
 
 ```
 OK
+```
+
+
+### /v2/is_registrar_authorised
+The is_registrar_authorised returns a boolean indicating if the supplied address is authorised to sign for the supplied registrar ID.
+
+#### Request Format
+Requests contain the following elements:
+ - `id`: The IANA registrar ID.
+ - `address`: The address to check.
+ 
+#### Response Format
+A boolean is returned; true if the supplied address can sign for the specified registrar ID, and False otherwise.
+
+#### Example Request
+
+```
+$ curl -X POST -H "Content-Type: application/json" --data '{"id": 9999, "address": "0x2693d5Df1854Bd01524F0C0e7b559124E6AA72b5"}' https://api-test.cartouche.co/v2/is_registrar_authorised
+```
+
+An example response is as follows:
+
+```
+{"result": true}
 ```
