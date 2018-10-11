@@ -246,9 +246,9 @@ Requests contain the following element:
 
 #### Response Format
 If the request succeeded, a JSON object with the following entries is returned:
- - `owner` - The Ethereum address that owns the name in ENS.
- - `resolver` - The Ethereum address of the resolver contract responsible for this name.
- - `addr` - The Ethereum address to which the name resolves
+ - `owner` - The Ethereum address that owns the name in ENS, or null if the name does not have an owner.
+ - `resolver` - The Ethereum address of the resolver contract responsible for this name, or null if the name does not have a resolver.
+ - `addr` - The Ethereum address to which the name resolves. This field is not present if `resolver` is null.
 
 #### Example Request
 
