@@ -154,6 +154,7 @@ Requests contain the following elements:
  - `owner` - the Ethereum address with which the domain should be associated. This should be in the form ‘0x’ followed by 40 hexadecimal characters.
  - `nonce` - the nonce for this domain, retrieved with a call to /nonce
  - `signature` - A valid signature, as described below.
+ - `dry_run` - Optional; if set to true, all validation checks will be performed but the update will not be submitted to the blockchain.
 
 The signature field for this request comprises a cryptographic signature as described in the ‘Authentication’ section. The data to sign takes the following format:
 
